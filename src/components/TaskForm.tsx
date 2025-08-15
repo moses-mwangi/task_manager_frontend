@@ -14,7 +14,12 @@ export default function TaskForm() {
   const context = useContext(TaskContext);
   const [checked, setChecked] = useState(false);
   const [postTask, setPostTask] = useState(false);
-  const { register, handleSubmit, reset } = useForm<FormData>();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<FormData>();
 
   if (!context) throw new Error("TaskContext must be used within TaskProvider");
 
@@ -50,8 +55,12 @@ export default function TaskForm() {
               id="title"
               type="text"
               className="form-input"
-              {...register("title", { required: true })}
+              // {...register("title", { required: true })}
+              {...register("title", { required: "Title is required" })}
             />
+            {errors.title && (
+              <p className="error-message">{errors.title.message}</p>
+            )}
           </div>
 
           <div className="form-group">
@@ -61,8 +70,13 @@ export default function TaskForm() {
             <textarea
               id="description"
               className="form-textarea"
-              {...register("description", { required: true })}
+              {...register("description", {
+                required: "Description is required",
+              })}
             ></textarea>
+            {errors.description && (
+              <p className="error-message">{errors.description.message}</p>
+            )}
           </div>
 
           <div className="form-checkbox-container">

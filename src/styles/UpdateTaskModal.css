@@ -58,20 +58,27 @@
   margin-bottom: 0.25rem;
 }
 
-.update-task-form input[type="text"],
-.update-task-form textarea {
+.form-input,
+.form-textarea {
   width: 100%;
-  border: 1px solid #e2e8f0;
-  border-radius: 0.375rem;
-  padding: 0.5rem 0.75rem;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease;
+}
+
+.form-input:focus,
+.form-textarea:focus {
   outline: none;
-  transition: border-color 0.2s;
+  border-color: #2563eb;
 }
 
-.update-task-form textarea {
-  min-height: 6rem;
+.form-textarea {
+  min-height: 80px;
+  resize: vertical;
 }
-
+/* /////////////// */
 .update-task-checkbox {
   display: flex;
   align-items: center;

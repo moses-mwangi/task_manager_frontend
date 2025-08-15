@@ -15,6 +15,11 @@ const UpdateTaskModal = ({ task, isOpen, onClose }: Props) => {
   const [description, setDescription] = useState("");
   const [isCompleted, setIsCompleted] = useState(false);
 
+  const [errors, setErrors] = useState<{
+    title?: string;
+    description?: string;
+  }>({});
+
   const { editTask, loading } = context || {};
 
   useEffect(() => {
@@ -22,12 +27,24 @@ const UpdateTaskModal = ({ task, isOpen, onClose }: Props) => {
       setTitle(task.title);
       setDescription(task.description);
       setIsCompleted(task.is_completed);
+      setErrors({});
     }
   }, [task]);
+
+  const validateForm = () => {
+    const newErrors: { title?: string; description?: string } = {};
+    if (!title.trim()) newErrors.title = "Title is required";
+    if (!description.trim()) newErrors.description = "Description is required";
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!task) return;
+
+    if (!validateForm()) return;
+
     editTask?.(task.id, {
       title,
       description,
@@ -49,19 +66,25 @@ const UpdateTaskModal = ({ task, isOpen, onClose }: Props) => {
           <div>
             <label>Title</label>
             <input
+              id="title"
               type="text"
+              className="form-input"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              required
             />
+            {errors.title && <p className="error-message">{errors.title}</p>}
           </div>
 
           <div>
             <label>Description</label>
             <textarea
+              className="form-textarea"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             />
+            {errors.description && (
+              <p className="error-message">{errors.description}</p>
+            )}
           </div>
 
           <div className="update-task-checkbox">
