@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import "../../styles/LoadingState.css";
 
 export default function LoadingState() {

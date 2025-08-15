@@ -17,8 +17,13 @@ nvm use 20.15.1
 
 ## Run Development
 
+npm install
 npm run dev
 
 ## Build for production:
 
 npm run build
+
+## Frontend is excepting (http://127.0.0.1:8000/) Endpoint so ensure its running:
+
+http://127.0.0.1:8000/

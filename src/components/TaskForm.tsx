@@ -1,7 +1,7 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import "../styles/TaskForm.css";
 import { TaskContext } from "../contexts/TaskContex";
+import "../styles/TaskForm.css";
 import ButtonLoader from "./loaders/ButtonLoader";
 
 interface FormData {

@@ -1,4 +1,3 @@
-import React from "react";
 import "../../styles/ButtonLoader.css";
 
 export default function ButtonLoader() {

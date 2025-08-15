@@ -1,10 +1,10 @@
-import React, { useContext, useState } from "react";
-import "../styles/TaskList.css";
+import { useContext, useState } from "react";
 import { TaskContext } from "../contexts/TaskContex";
-import UpdateTaskModal from "./UpdateTaskModal";
+import "../styles/TaskList.css";
+import { Task } from "../types/task";
 import TaskFilters from "./FilterList";
 import Pagination from "./Pagination";
-import { Task } from "../types/task";
+import UpdateTaskModal from "./UpdateTaskModal";
 
 export default function TaskList() {
   const [editingTask, setEditingTask] = useState<Task | null>(null);
